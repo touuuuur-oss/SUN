@@ -1,1 +1,132 @@
-<html><body><h1>v3 mock</h1></body></html>
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>沖縄旧暦入りオリジナルカレンダー｜サン印刷</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="logo">SUN PRINTING</div>
+  <div class="saveStatus">✓ 自動保存済み</div>
+</header>
+
+<section class="hero">
+  <div class="heroInner">
+    <div class="eyebrow">OKINAWA CALENDAR ORDER</div>
+    <h1>沖縄旧暦入り<br>オリジナルカレンダー</h1>
+    <p>写真を入れるだけ。表紙＋12ヶ月を1枚ずつ確認しながら作成できます。</p>
+    <a href="#editor" class="heroBtn">作成を始める</a>
+  </div>
+</section>
+
+<div class="stepbar">
+  <div id="stepList" class="stepList"></div>
+</div>
+
+<main id="editor" class="editor">
+  <aside class="controlPanel">
+    <div class="card">
+      <div class="small">STEP EDIT</div>
+      <h2 id="editTitle">表紙を編集</h2>
+      <p id="editDesc">表紙は12ヶ月分の写真を一覧で配置します。</p>
+    </div>
+
+    <div class="card">
+      <label>タイトル（20文字以内）</label>
+      <input id="titleInput" maxlength="20" value="OKINAWA FAMILY 2026">
+
+      <label>このページの写真</label>
+      <input id="fileInput" type="file" accept="image/*">
+
+      <div class="tip">
+        推奨：JPEG / 横写真 / 3MB以上 / 4:3推奨<br>
+        白フチ付きレイアウトなので、塗り足しは不要想定です。
+      </div>
+
+      <div id="qualityWarning" class="qualityWarning hidden">
+        写真容量が小さいため、印刷時に粗くなる可能性があります。
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>写真位置調整</h3>
+      <p class="subText">写真をアップした後、拡大・位置調整できます。</p>
+
+      <label>拡大・縮小</label>
+      <input id="zoom" type="range" min="80" max="180" value="100">
+
+      <label>左右位置</label>
+      <input id="xPos" type="range" min="0" max="100" value="50">
+
+      <label>上下位置</label>
+      <input id="yPos" type="range" min="0" max="100" value="50">
+
+      <button id="resetBtn" class="lightBtn" type="button">位置をリセット</button>
+    </div>
+
+    <div class="card">
+      <h3>部数・概算</h3>
+      <label>部数</label>
+      <select id="qty">
+        <option value="1">1冊</option>
+        <option value="3">3冊</option>
+        <option value="5">5冊</option>
+        <option value="10">10冊</option>
+      </select>
+      <div class="priceBox">
+        <span>概算金額</span>
+        <strong id="price">¥3,980</strong>
+      </div>
+    </div>
+
+    <div class="moveBtns">
+      <button id="prevBtn" class="backBtn" type="button">‹ 前へ</button>
+      <button id="nextBtn" class="nextBtn" type="button">次へ ›</button>
+    </div>
+  </aside>
+
+  <section class="previewPanel">
+    <div class="previewHead">
+      <div>
+        <div class="small">PRINT PREVIEW</div>
+        <h2 id="previewTitle">表紙プレビュー</h2>
+        <p id="previewNote">A3横比率に近い見た目で確認できます。</p>
+      </div>
+      <button id="approveBtn" class="approveBtn" type="button">この内容で校了する</button>
+    </div>
+
+    <div class="a3Stage">
+      <div id="sheetHolder"></div>
+    </div>
+
+    <div class="miniCompare">
+      <div>
+        <span>前のページ</span>
+        <div id="prevMini" class="miniPreview"></div>
+      </div>
+      <div>
+        <span>次のページ</span>
+        <div id="nextMini" class="miniPreview"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="notesSection">
+  <div class="wrap">
+    <h2>ご注文前の注意事項</h2>
+    <div class="noteGrid">
+      <div>校了後の修正はできません。</div>
+      <div>画面と印刷では色味が多少異なります。</div>
+      <div>試作版では決済・メール送信は未実装です。</div>
+      <div>実運用では印刷用PDFはサン印刷側で生成します。</div>
+    </div>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
