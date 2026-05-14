@@ -17,7 +17,7 @@
   <div class="heroInner">
     <div class="eyebrow">OKINAWA CALENDAR ORDER</div>
     <h1>沖縄旧暦入り<br>オリジナルカレンダー</h1>
-    <p>写真を入れるだけ。表紙＋12ヶ月を1枚ずつ確認しながら作成できます。</p>
+    <p>写真を入れるだけ。A3縦型の壁掛けカレンダーを、1枚ずつ確認しながら作成できます。</p>
     <a href="#editor" class="heroBtn">作成を始める</a>
   </div>
 </section>
@@ -27,6 +27,32 @@
 </div>
 
 <main id="editor" class="editor">
+  <section class="previewPanel">
+    <div class="previewHead">
+      <div>
+        <div class="small">PRINT PREVIEW</div>
+        <h2 id="previewTitle">表紙プレビュー</h2>
+        <p id="previewNote">A3縦型の仕上がり比率に近いプレビューです。</p>
+      </div>
+      <button id="approveBtnTop" class="approveBtn desktopOnly" type="button">この内容で校了する</button>
+    </div>
+
+    <div class="a3Stage">
+      <div id="sheetHolder"></div>
+    </div>
+
+    <div class="miniCompare desktopOnly">
+      <div>
+        <span>前のページ</span>
+        <div id="prevMini" class="miniPreview"></div>
+      </div>
+      <div>
+        <span>次のページ</span>
+        <div id="nextMini" class="miniPreview"></div>
+      </div>
+    </div>
+  </section>
+
   <aside class="controlPanel">
     <div class="card">
       <div class="small">STEP EDIT</div>
@@ -42,7 +68,7 @@
       <input id="fileInput" type="file" accept="image/*">
 
       <div class="tip">
-        推奨：JPEG / 横写真 / 3MB以上 / 4:3推奨<br>
+        推奨：JPEG / 横写真・縦写真どちらも可 / 3MB以上<br>
         白フチ付きレイアウトなので、塗り足しは不要想定です。
       </div>
 
@@ -86,33 +112,9 @@
       <button id="prevBtn" class="backBtn" type="button">‹ 前へ</button>
       <button id="nextBtn" class="nextBtn" type="button">次へ ›</button>
     </div>
+
+    <button id="approveBtnBottom" class="approveBtn mobileApprove" type="button">この内容で校了する</button>
   </aside>
-
-  <section class="previewPanel">
-    <div class="previewHead">
-      <div>
-        <div class="small">PRINT PREVIEW</div>
-        <h2 id="previewTitle">表紙プレビュー</h2>
-        <p id="previewNote">A3横比率に近い見た目で確認できます。</p>
-      </div>
-      <button id="approveBtn" class="approveBtn" type="button">この内容で校了する</button>
-    </div>
-
-    <div class="a3Stage">
-      <div id="sheetHolder"></div>
-    </div>
-
-    <div class="miniCompare">
-      <div>
-        <span>前のページ</span>
-        <div id="prevMini" class="miniPreview"></div>
-      </div>
-      <div>
-        <span>次のページ</span>
-        <div id="nextMini" class="miniPreview"></div>
-      </div>
-    </div>
-  </section>
 </main>
 
 <section class="notesSection">

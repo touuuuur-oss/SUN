@@ -1,4 +1,5 @@
- :root{
+
+:root{
   --bg:#f4f1eb;
   --paper:#fff;
   --ink:#222;
@@ -30,7 +31,7 @@ body{
 .logo{font-weight:900;letter-spacing:.08em;color:#d8b067}
 .saveStatus{font-size:13px;color:#ddd}
 .hero{
-  min-height:54vh;
+  min-height:46vh;
   display:flex;
   align-items:center;
   background:
@@ -41,6 +42,7 @@ body{
   width:min(980px,92%);
   margin:auto;
   color:#fff;
+  padding:42px 0;
 }
 .eyebrow,.small{
   color:var(--gold);
@@ -49,24 +51,24 @@ body{
   letter-spacing:.16em;
 }
 .hero h1{
-  font-size:clamp(42px,8vw,82px);
+  font-size:clamp(38px,8vw,78px);
   line-height:1.06;
   margin:14px 0;
 }
 .hero p{
-  font-size:clamp(17px,2vw,23px);
+  font-size:clamp(16px,2vw,22px);
   line-height:1.8;
   color:#eee;
 }
 .heroBtn{
   display:inline-block;
-  margin-top:24px;
+  margin-top:20px;
   background:linear-gradient(180deg,#dfbc72,#b8842e);
   color:#fff;
   text-decoration:none;
-  padding:17px 28px;
+  padding:16px 26px;
   border-radius:14px;
-  font-size:20px;
+  font-size:19px;
   font-weight:900;
 }
 .stepbar{
@@ -96,14 +98,17 @@ body{
 .step.active{background:#111;color:#fff;border-color:#111}
 .editor{
   display:grid;
-  grid-template-columns:360px 1fr;
+  grid-template-columns:minmax(0,1fr) 360px;
   gap:22px;
   padding:22px;
+  align-items:start;
 }
 .controlPanel{
   display:flex;
   flex-direction:column;
   gap:16px;
+  position:sticky;
+  top:124px;
 }
 .card,.previewPanel{
   background:#fff;
@@ -127,6 +132,7 @@ input,select{
   font-size:16px;
   background:#fff;
 }
+input[type="range"]{padding:0}
 .tip{
   margin-top:14px;
   padding:13px;
@@ -187,6 +193,7 @@ input,select{
   background:linear-gradient(180deg,#dfbc72,#b8842e);
   color:#fff;
 }
+.mobileApprove{display:none}
 .a3Stage{
   margin-top:18px;
   background:#ebe6dc;
@@ -197,63 +204,63 @@ input,select{
   justify-content:center;
 }
 .printSheet{
-  width:min(920px,100%);
-  aspect-ratio:420/297;
+  width:min(600px,100%);
+  aspect-ratio:297/420;
   background:#fff;
   box-shadow:0 18px 42px rgba(0,0,0,.18);
   border:1px solid #ddd;
 }
 .monthSheet{
   display:grid;
-  grid-template-rows:58% 42%;
+  grid-template-rows:48% 52%;
 }
 .photoArea{
-  border:22px solid #fff;
+  border:18px solid #fff;
   background:#ddd center/cover no-repeat;
 }
 .calendarArea{
-  padding:16px 20px 20px;
+  padding:12px 16px 18px;
   border-top:1px solid #eee;
 }
 .monthName{
-  font-size:34px;
+  font-size:30px;
   font-weight:900;
-  margin-bottom:10px;
+  margin-bottom:8px;
 }
 .calGrid{
   display:grid;
   grid-template-columns:repeat(7,1fr);
-  gap:4px;
+  gap:3px;
 }
 .day{
-  min-height:28px;
+  min-height:27px;
   border:1px solid #eee;
   background:#fafafa;
-  border-radius:4px;
-  padding:3px;
-  font-size:11px;
+  border-radius:3px;
+  padding:2px;
+  font-size:10px;
 }
 .sun{color:var(--red)}
 .sat{color:#064fa3}
 .coverSheet{
-  padding:24px;
+  padding:18px;
 }
 .coverTitle{
   text-align:center;
-  font-size:42px;
+  font-size:34px;
   font-weight:900;
   letter-spacing:.04em;
-  margin:4px 0 16px;
+  margin:4px 0 12px;
 }
-.coverSub{text-align:center;color:#777;margin-bottom:16px}
+.coverSub{text-align:center;color:#777;margin-bottom:12px;font-size:13px}
 .coverGrid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
 }
 .coverThumb{
   aspect-ratio:4/3;
-  border:9px solid #fff;
+  border:7px solid #fff;
   background:#ddd center/cover no-repeat;
   box-shadow:0 2px 9px rgba(0,0,0,.12);
 }
@@ -271,11 +278,12 @@ input,select{
   margin-bottom:7px;
 }
 .miniPreview{
-  aspect-ratio:420/297;
+  aspect-ratio:297/420;
   background:#fafafa;
   border:1px solid #ddd;
   border-radius:14px;
   overflow:hidden;
+  max-height:180px;
 }
 .notesSection{
   padding:58px 0;
@@ -328,10 +336,40 @@ input,select{
 .orderActions{display:flex;gap:12px;flex-wrap:wrap}
 .linkBtn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
 @media(max-width:980px){
-  .editor{grid-template-columns:1fr;padding:14px}
+  .hero{min-height:40vh}
+  .editor{
+    display:flex;
+    flex-direction:column;
+    padding:12px;
+  }
+  .previewPanel{order:1;padding:14px}
+  .controlPanel{
+    order:2;
+    position:static;
+  }
+  .desktopOnly{display:none!important}
+  .mobileApprove{display:block;width:100%;font-size:17px}
   .previewHead{display:block}
-  .approveBtn{width:100%;margin-top:12px}
-  .a3Stage{padding:14px}
-  .printSheet{width:820px;max-width:none}
+  .a3Stage{
+    padding:14px;
+    border-radius:18px;
+    max-height:none;
+  }
+  .printSheet{
+    width:min(92vw,430px);
+    max-width:none;
+  }
+  .photoArea{border:12px solid #fff}
+  .calendarArea{padding:10px}
+  .monthName{font-size:24px}
+  .day{
+    min-height:20px;
+    font-size:8px;
+  }
+  .coverTitle{font-size:24px}
+  .coverGrid{grid-template-columns:repeat(3,1fr);gap:5px}
+  .coverThumb{border:4px solid #fff}
   .noteGrid{grid-template-columns:1fr}
+  .card{padding:18px}
+  .stepbar{top:60px}
 }

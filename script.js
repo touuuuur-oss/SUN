@@ -37,6 +37,7 @@ function go(i){
   state[current].done = true;
   current = i;
   render();
+  document.getElementById('editor').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 function calendarGrid(){
@@ -78,7 +79,7 @@ function renderMini(index){
   if(index === 0){
     return `<div style="padding:8px;font-weight:900;text-align:center">${titleInput.value}</div>`;
   }
-  return `<div style="height:58%;${imageStyle(item,index)};background-repeat:no-repeat"></div>
+  return `<div style="height:48%;${imageStyle(item,index)};background-repeat:no-repeat"></div>
           <div style="padding:8px;font-weight:900">${item.name}</div>`;
 }
 
@@ -91,15 +92,17 @@ function render(){
   document.getElementById('editTitle').textContent = current === 0 ? '表紙を編集' : `${pages[current]}を編集`;
   document.getElementById('editDesc').textContent = current === 0 ? '表紙は12ヶ月分の写真が並びます。' : '写真をアップし、白フチ内で位置調整してください。';
   document.getElementById('previewTitle').textContent = current === 0 ? '表紙プレビュー' : `${pages[current]}プレビュー`;
-  document.getElementById('previewNote').textContent = current === 0 ? '12ヶ月分の写真を一覧表示します。' : 'A3横向きの仕上がり比率に近いプレビューです。';
+  document.getElementById('previewNote').textContent = current === 0 ? '12ヶ月分の写真を一覧表示します。' : 'A3縦型の仕上がり比率に近いプレビューです。';
 
   sheetHolder.innerHTML = current === 0 ? renderCover() : renderMonth();
   zoom.value = state[current].zoom;
   xPos.value = state[current].x;
   yPos.value = state[current].y;
 
-  document.getElementById('prevMini').innerHTML = renderMini(current - 1);
-  document.getElementById('nextMini').innerHTML = renderMini(current + 1);
+  if(document.getElementById('prevMini')){
+    document.getElementById('prevMini').innerHTML = renderMini(current - 1);
+    document.getElementById('nextMini').innerHTML = renderMini(current + 1);
+  }
 }
 
 fileInput.addEventListener('change', e => {
@@ -140,12 +143,14 @@ document.getElementById('prevBtn').addEventListener('click', () => {
   state[current].done = true;
   current = Math.max(0, current - 1);
   render();
+  document.getElementById('editor').scrollIntoView({behavior:'smooth', block:'start'});
 });
 
 document.getElementById('nextBtn').addEventListener('click', () => {
   state[current].done = true;
   current = Math.min(pages.length - 1, current + 1);
   render();
+  document.getElementById('editor').scrollIntoView({behavior:'smooth', block:'start'});
 });
 
 titleInput.addEventListener('input', render);
@@ -159,8 +164,10 @@ document.getElementById('qty').addEventListener('change', e => {
   document.getElementById('price').textContent = '¥' + p.toLocaleString();
 });
 
-document.getElementById('approveBtn').addEventListener('click', () => {
+function approve(){
   location.href = 'order.html';
-});
+}
+document.getElementById('approveBtnTop').addEventListener('click', approve);
+document.getElementById('approveBtnBottom').addEventListener('click', approve);
 
 render();
